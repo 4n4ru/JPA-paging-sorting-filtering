@@ -37,6 +37,7 @@ public class EmployeeCriteriaRepository {
     Predicate predicate = getPredicate(employeeSearchCriteria, employeeRoot);
     criteriaQuery.where(predicate);
     setOrder(employeePage, criteriaQuery, employeeRoot);
+
     TypedQuery<Employee> typedQuery = entityManager.createQuery(criteriaQuery);
     typedQuery.setFirstResult(employeePage.getPageNumber() * employeePage.getPageSize());
     typedQuery.setMaxResults(employeePage.getPageSize());
@@ -58,7 +59,7 @@ public class EmployeeCriteriaRepository {
                                                                         "%")
       );
     }
-    return criteriaBuilder.and(predicates.toArray(predicates.toArray(new Predicate[0])));
+    return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
   }
 
   private void setOrder(EmployeePage employeePage, CriteriaQuery<Employee> criteriaQuery, Root<Employee> employeeRoot) {
